@@ -1,0 +1,67 @@
+/* SW Design System — tokens.css */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { -webkit-font-smoothing: antialiased; scroll-behavior: smooth; }
+body { min-height: 100dvh; line-height: 1.6; font-family: var(--font-body); color: var(--text-primary); background-color: var(--surface-0); }
+:root {
+  --color-primary: #2563EB;
+  --color-primary-muted: #1E40AF;
+  --color-accent: #C2410C;
+  --color-accent-muted: #9A3412;
+  --surface-0: #FAFAF8;
+  --surface-1: #F5F5F0;
+  --surface-2: #EBEBE4;
+  --surface-3: #D4D4CC;
+  --text-primary: #18181B;
+  --text-secondary: #52525B;
+  --text-tertiary: #A1A1AA;
+  --color-success: #22C55E;
+  --color-warning: #F97316;
+  --color-error: #EF4444;
+  --color-info: #3B82F6;
+  --font-display: 'Sora', sans-serif;
+  --font-body: 'Inter', sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+  --text-small: 14px;
+  --text-small-lh: 1.5;
+  --text-body: 16px;
+  --text-body-lh: 1.6;
+  --text-mono: 14px;
+  --text-mono-lh: 1.6;
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 20px;
+  --space-6: 24px;
+  --space-8: 32px;
+  --sidebar-width: 240px;
+  --sidebar-collapsed: 64px;
+  --radius-button: 6px;
+  --radius-dashboard-card: 8px;
+  --radius-portfolio-card: 12px;
+  --nav-height: 64px;
+  --transition-micro: 150ms;
+  --transition-standard: 200ms;
+  --ease-out: ease-out;
+  --ease-in-out: ease-in-out;
+}
+[data-theme="dark"] {
+  --color-primary: #3B82F6;
+  --color-primary-muted: #60A5FA;
+  --color-accent: #F97316;
+  --color-accent-muted: #FB923C;
+  --surface-0: #09090B;
+  --surface-1: #18181B;
+  --surface-2: #27272A;
+  --surface-3: #3F3F46;
+  --text-primary: #FAFAFA;
+  --text-secondary: #A1A1AA;
+  --text-tertiary: #71717A;
+  --color-success: #22C55E;
+  --color-warning: #F97316;
+  --color-error: #EF4444;
+  --color-info: #3B82F6;
+}
+@keyframes sw-pulse-dot { 0%, 100% { opacity: 1; } 50% { opacity: 0.4; } }
+@keyframes sw-skeleton-pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.5; } }
+@media (prefers-reduced-motion: reduce) { * { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; } }
