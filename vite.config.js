@@ -8,4 +8,5 @@ export default defineConfig({
     react(),
   ],
   base: './',
+  cacheDir: '/tmp/vite-cache-acc',
 });

@@ -41,3 +41,46 @@ npm run build
 ```
 
 The production build outputs to `dist/`.
+
+## Project Structure
+
+```
+agent-control-center/
+├── index.html                  # Entry point with Google Fonts, dark theme
+├── vite.config.js             # Vite + Tailwind + React config
+├── package.json
+├── src/
+│   ├── main.jsx               # App bootstrap, router, tokens import
+│   ├── App.jsx                # Layout (sidebar + routing)
+│   ├── app.css                # Tailwind + custom styles
+│   ├── data.js                # All mock data (agents, runs, logs, costs)
+│   ├── design-system/         # SW Design System (local copy)
+│   │   ├── tokens.css
+│   │   ├── index.js
+│   │   ├── components/
+│   │   └── hooks/
+│   └── pages/
+│       ├── Dashboard.jsx
+│       ├── AgentDetail.jsx
+│       └── Settings.jsx
+└── dist/                      # Production build output
+```
+
+## Design System Components Used
+
+- `Button` — Primary actions (Dry Run)
+- `Card` — Agent cards, content containers (dashboard variant)
+- `DataTable` — Run history with sortable columns
+- `MetricCard` — KPI summary cards
+- `Sidebar` — (reference; custom implementation with React Router Links)
+- `StatusBadge` — Status indicators (running, completed, attention, failed, disabled)
+- `SkeletonLoader` — Loading states (available, not rendered in static demo)
+- `Input` — Form inputs (available, not used in read-only dashboard)
+
+## Mock Data
+
+All data is in `src/data.js`:
+- 6 agents with different statuses
+- 25 run history entries
+- 30+ log lines per agent
+- 30 days of cost history for the chart

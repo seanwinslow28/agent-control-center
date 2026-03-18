@@ -1,32 +1,111 @@
-/* SW Design System — tokens.css */
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-html { -webkit-font-smoothing: antialiased; scroll-behavior: smooth; }
-body { min-height: 100dvh; line-height: 1.6; font-family: var(--font-body); color: var(--text-primary); background-color: var(--surface-0); }
+/* ==========================================================================
+   SW Design System — tokens.css
+   Unified CSS custom properties for all three projects.
+   
+   Light mode (:root) — Portfolio default
+   Dark mode ([data-theme="dark"]) — Dashboards default
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   BASE RESET & FOUNDATION
+   -------------------------------------------------------------------------- */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  -moz-text-size-adjust: none;
+  -webkit-text-size-adjust: none;
+  text-size-adjust: none;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  scroll-behavior: smooth;
+  hanging-punctuation: first last;
+  scroll-padding-top: var(--space-16);
+}
+
+body {
+  min-height: 100dvh;
+  line-height: 1.6;
+  font-family: var(--font-body);
+  font-size: 16px;
+  color: var(--text-primary);
+  background-color: var(--surface-0);
+}
+
+img, picture, video, canvas, svg { display: block; max-width: 100%; height: auto; }
+input, button, textarea, select { font: inherit; color: inherit; }
+button { cursor: pointer; background: none; border: none; }
+table { border-collapse: collapse; width: 100%; }
+
+h1, h2, h3, h4, h5, h6 { text-wrap: balance; }
+p, li, figcaption { text-wrap: pretty; max-width: 72ch; }
+
+.sr-only {
+  position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+  overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border-width: 0;
+}
+
+/* --------------------------------------------------------------------------
+   LIGHT MODE (Portfolio Default)
+   -------------------------------------------------------------------------- */
 :root {
+  /* Primary & Accent */
   --color-primary: #2563EB;
   --color-primary-muted: #1E40AF;
   --color-accent: #C2410C;
   --color-accent-muted: #9A3412;
+
+  /* Surfaces */
   --surface-0: #FAFAF8;
   --surface-1: #F5F5F0;
   --surface-2: #EBEBE4;
   --surface-3: #D4D4CC;
+
+  /* Text */
   --text-primary: #18181B;
   --text-secondary: #52525B;
   --text-tertiary: #A1A1AA;
+
+  /* Semantic (same in both modes) */
   --color-success: #22C55E;
   --color-warning: #F97316;
   --color-error: #EF4444;
   --color-info: #3B82F6;
+
+  /* --------------------------------------------------------------------------
+     TYPOGRAPHY
+     -------------------------------------------------------------------------- */
   --font-display: 'Sora', sans-serif;
   --font-body: 'Inter', sans-serif;
   --font-mono: 'JetBrains Mono', monospace;
-  --text-small: 14px;
-  --text-small-lh: 1.5;
+
+  /* Type Scale: font-size / line-height */
+  --text-display: 48px;
+  --text-display-lh: 1.1;
+  --text-h1: 36px;
+  --text-h1-lh: 1.2;
+  --text-h2: 28px;
+  --text-h2-lh: 1.3;
+  --text-h3: 22px;
+  --text-h3-lh: 1.4;
+  --text-h4: 18px;
+  --text-h4-lh: 1.4;
   --text-body: 16px;
   --text-body-lh: 1.6;
+  --text-small: 14px;
+  --text-small-lh: 1.5;
+  --text-caption: 12px;
+  --text-caption-lh: 1.4;
   --text-mono: 14px;
   --text-mono-lh: 1.6;
+
+  /* --------------------------------------------------------------------------
+     SPACING (4px base)
+     -------------------------------------------------------------------------- */
   --space-1: 4px;
   --space-2: 8px;
   --space-3: 12px;
@@ -34,34 +113,127 @@ body { min-height: 100dvh; line-height: 1.6; font-family: var(--font-body); colo
   --space-5: 20px;
   --space-6: 24px;
   --space-8: 32px;
+  --space-10: 40px;
+  --space-12: 48px;
+  --space-16: 64px;
+
+  /* --------------------------------------------------------------------------
+     LAYOUT
+     -------------------------------------------------------------------------- */
   --sidebar-width: 240px;
   --sidebar-collapsed: 64px;
+  --bp-mobile: 640px;
+  --bp-tablet: 768px;
+  --bp-desktop: 1024px;
+  --bp-wide: 1280px;
   --radius-button: 6px;
   --radius-dashboard-card: 8px;
   --radius-portfolio-card: 12px;
   --nav-height: 64px;
+  --content-max-width: 1200px;
+  --text-max-width: 720px;
+
+  /* --------------------------------------------------------------------------
+     TRANSITIONS
+     -------------------------------------------------------------------------- */
   --transition-micro: 150ms;
   --transition-standard: 200ms;
+  --transition-max: 400ms;
   --ease-out: ease-out;
+  --ease-in: ease-in;
   --ease-in-out: ease-in-out;
 }
+
+/* --------------------------------------------------------------------------
+   DARK MODE
+   -------------------------------------------------------------------------- */
 [data-theme="dark"] {
+  /* Primary & Accent */
   --color-primary: #3B82F6;
   --color-primary-muted: #60A5FA;
   --color-accent: #F97316;
   --color-accent-muted: #FB923C;
+
+  /* Surfaces */
   --surface-0: #09090B;
   --surface-1: #18181B;
   --surface-2: #27272A;
   --surface-3: #3F3F46;
+
+  /* Text */
   --text-primary: #FAFAFA;
   --text-secondary: #A1A1AA;
   --text-tertiary: #71717A;
+
+  /* Semantic — same values, redeclared for completeness */
   --color-success: #22C55E;
   --color-warning: #F97316;
   --color-error: #EF4444;
   --color-info: #3B82F6;
 }
-@keyframes sw-pulse-dot { 0%, 100% { opacity: 1; } 50% { opacity: 0.4; } }
-@keyframes sw-skeleton-pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.5; } }
-@media (prefers-reduced-motion: reduce) { * { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; } }
+
+/* System preference fallback for dark mode */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme]) {
+    --color-primary: #3B82F6;
+    --color-primary-muted: #60A5FA;
+    --color-accent: #F97316;
+    --color-accent-muted: #FB923C;
+    --surface-0: #09090B;
+    --surface-1: #18181B;
+    --surface-2: #27272A;
+    --surface-3: #3F3F46;
+    --text-primary: #FAFAFA;
+    --text-secondary: #A1A1AA;
+    --text-tertiary: #71717A;
+    --color-success: #22C55E;
+    --color-warning: #F97316;
+    --color-error: #EF4444;
+    --color-info: #3B82F6;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   GLOBAL FOCUS STYLES
+   -------------------------------------------------------------------------- */
+:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+  border-radius: var(--radius-button);
+}
+
+/* --------------------------------------------------------------------------
+   TEXT SELECTION
+   -------------------------------------------------------------------------- */
+::selection {
+  background: color-mix(in srgb, var(--color-primary) 25%, transparent);
+  color: var(--text-primary);
+}
+
+/* --------------------------------------------------------------------------
+   ANIMATIONS
+   -------------------------------------------------------------------------- */
+
+/* StatusBadge running pulse */
+@keyframes sw-pulse-dot {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.4; }
+}
+
+/* SkeletonLoader pulse */
+@keyframes sw-skeleton-pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+
+/* --------------------------------------------------------------------------
+   ACCESSIBILITY KILL SWITCH
+   -------------------------------------------------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

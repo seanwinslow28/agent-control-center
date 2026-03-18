@@ -5,6 +5,9 @@ import App from './App';
 import './design-system/tokens.css';
 import './app.css';
 
+// Ensure dark theme is always set
+document.documentElement.setAttribute('data-theme', 'dark');
+
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <HashRouter>

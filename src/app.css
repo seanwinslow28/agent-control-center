@@ -1,0 +1,298 @@
+@import "tailwindcss";
+
+/* ==========================================================================
+   Agent Control Center — App Styles
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   TAILWIND THEME EXTENSION (v4 @theme directive)
+   -------------------------------------------------------------------------- */
+@theme {
+  --color-primary: #3B82F6;
+  --color-primary-muted: #60A5FA;
+  --color-accent: #F97316;
+  --color-accent-muted: #FB923C;
+  --color-success: #22C55E;
+  --color-warning: #F97316;
+  --color-error: #EF4444;
+  --color-info: #3B82F6;
+
+  --color-surface-0: #09090B;
+  --color-surface-1: #18181B;
+  --color-surface-2: #27272A;
+  --color-surface-3: #3F3F46;
+
+  --color-text-primary: #FAFAFA;
+  --color-text-secondary: #A1A1AA;
+  --color-text-tertiary: #71717A;
+
+  --font-body: 'Inter', system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+}
+
+/* --------------------------------------------------------------------------
+   GRID BACKGROUND
+   Faint grid pattern on surface-0 — barely visible ~60px intervals
+   -------------------------------------------------------------------------- */
+.grid-bg {
+  background-color: #09090B;
+  background-image:
+    linear-gradient(rgba(63, 63, 70, 0.07) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(63, 63, 70, 0.07) 1px, transparent 1px);
+  background-size: 48px 48px;
+}
+
+/* --------------------------------------------------------------------------
+   DASHBOARD LAYOUT
+   -------------------------------------------------------------------------- */
+html, body {
+  height: 100%;
+  overflow: hidden;
+  margin: 0;
+}
+
+#root {
+  height: 100dvh;
+}
+
+.dashboard-layout {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  height: 100dvh;
+  overflow: hidden;
+}
+
+.main-content {
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  min-height: 0;
+}
+
+/* --------------------------------------------------------------------------
+   TYPOGRAPHY UTILITIES
+   -------------------------------------------------------------------------- */
+.font-mono-data {
+  font-family: 'JetBrains Mono', monospace;
+  font-variant-numeric: tabular-nums lining-nums;
+}
+
+.tabular-nums {
+  font-variant-numeric: tabular-nums lining-nums;
+}
+
+/* Status glow classes removed — replaced by 3px left-border instrument detail
+   on AgentStatusCards per AgentStatusCard.md mini-spec */
+
+/* --------------------------------------------------------------------------
+   TAB STYLES
+   -------------------------------------------------------------------------- */
+.tab-btn {
+  padding: 8px 16px;
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  color: #A1A1AA;
+  background: transparent;
+  border: none;
+  border-bottom: 2px solid transparent;
+  cursor: pointer;
+  transition: color 150ms ease, border-color 150ms ease;
+}
+
+.tab-btn:hover {
+  color: #FAFAFA;
+}
+
+.tab-btn.active {
+  color: #FAFAFA;
+  border-bottom-color: #3B82F6;
+}
+
+/* --------------------------------------------------------------------------
+   TAB CONTENT TRANSITION
+   -------------------------------------------------------------------------- */
+.tab-content {
+  animation: fadeIn 150ms ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* --------------------------------------------------------------------------
+   LOG VIEWER — clean terminal feel per spec §6
+   Background: surface-0 inside a surface-1 card (slightly darker than card)
+   JetBrains Mono for all log text
+   Timestamps in text-tertiary, messages in text-primary
+   -------------------------------------------------------------------------- */
+.log-container {
+  background: #09090B;
+  border: 1px solid #27272A;
+  border-radius: 8px;
+  padding: 16px;
+  overflow-y: auto;
+  max-height: 480px;
+  overscroll-behavior: contain;
+}
+
+.log-line {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 14px;
+  line-height: 1.7;
+  white-space: pre-wrap;
+  word-break: break-all;
+  animation: logFadeIn 200ms ease-out;
+}
+
+.log-timestamp {
+  color: #A1A1AA;
+  margin-right: 8px;
+  user-select: none;
+}
+
+.log-info { color: #FAFAFA; }
+.log-warn { color: #F97316; }
+.log-error { color: #EF4444; }
+.log-debug { color: #A1A1AA; }
+
+.log-separator {
+  border-top: 1px solid #27272A;
+  margin: 8px 0;
+}
+
+@keyframes logFadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* --------------------------------------------------------------------------
+   SKILL TAG
+   -------------------------------------------------------------------------- */
+.skill-tag {
+  display: inline-block;
+  padding: 4px 10px;
+  background: #27272A;
+  border-radius: 6px;
+  font-size: 12px;
+  font-family: 'JetBrains Mono', monospace;
+  color: #A1A1AA;
+  line-height: 1.4;
+}
+
+/* --------------------------------------------------------------------------
+   AGENT CARD GRID
+   -------------------------------------------------------------------------- */
+.agent-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 16px;
+}
+
+/* Per AgentStatusCard.md: focus ring at 50% opacity, not global 100% */
+.agent-grid > [role="button"]:focus-visible {
+  outline: 2px solid color-mix(in srgb, #3B82F6 50%, transparent);
+  outline-offset: 2px;
+}
+
+/* --------------------------------------------------------------------------
+   METRIC ROW
+   -------------------------------------------------------------------------- */
+.metric-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 16px;
+}
+
+/* --------------------------------------------------------------------------
+   BACK BUTTON
+   -------------------------------------------------------------------------- */
+.back-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: #A1A1AA;
+  text-decoration: none;
+  font-size: 14px;
+  font-family: 'Inter', sans-serif;
+  transition: color 150ms ease;
+}
+
+.back-link:hover {
+  color: #FAFAFA;
+}
+
+/* --------------------------------------------------------------------------
+   CONFIG KEY-VALUE
+   -------------------------------------------------------------------------- */
+.config-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  padding: 12px 0;
+  border-bottom: 1px solid #27272A;
+}
+
+.config-row:last-child {
+  border-bottom: none;
+}
+
+.config-label {
+  font-size: 14px;
+  color: #A1A1AA;
+}
+
+.config-value {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 14px;
+  color: #FAFAFA;
+  font-variant-numeric: tabular-nums lining-nums;
+}
+
+/* --------------------------------------------------------------------------
+   SCROLLBAR STYLING (subtle)
+   -------------------------------------------------------------------------- */
+.main-content::-webkit-scrollbar {
+  width: 6px;
+}
+.main-content::-webkit-scrollbar-track {
+  background: transparent;
+}
+.main-content::-webkit-scrollbar-thumb {
+  background: #3F3F46;
+  border-radius: 3px;
+}
+.main-content::-webkit-scrollbar-thumb:hover {
+  background: #52525B;
+}
+
+.log-container::-webkit-scrollbar {
+  width: 6px;
+}
+.log-container::-webkit-scrollbar-track {
+  background: transparent;
+}
+.log-container::-webkit-scrollbar-thumb {
+  background: #3F3F46;
+  border-radius: 3px;
+}
+
+/* --------------------------------------------------------------------------
+   CHART CONTAINER
+   -------------------------------------------------------------------------- */
+.chart-container {
+  background: #18181B;
+  border: 1px solid #3F3F46;
+  border-radius: 8px;
+  padding: 20px;
+}
+
+/* --------------------------------------------------------------------------
+   REDUCED MOTION
+   -------------------------------------------------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+  .tab-content,
+  .log-line {
+    animation: none;
+  }
+}
